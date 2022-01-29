@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        Scanner scn =new Scanner(System.in);
+        String str =scn.next();
+        ArrayList<String> subset=gss(0,str);
+        System.out.println(subset);
+    }
+
+    public static ArrayList<String> gss(int idx,String str) {
+        if(idx==str.length()){
+        ArrayList<String>base=new ArrayList<>();
+        base.add("");
+        return base;
+    }
+    //faith
+    ArrayList<String> smallAns = gss(idx+1,str);
+    
+    ArrayList<String> ans = new ArrayList<>();
+     
+     //no
+    for(String Smallsubset: smallAns){
+        ans.add(Smallsubset);
+    }
+
+    //yes
+    for(String Smallsubset: smallAns){
+        ans.add(str.charAt(idx) + Smallsubset);
+    }
+    return ans;
+    }
+}
